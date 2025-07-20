@@ -24,4 +24,4 @@ require("vim-options")
 require("lazy").setup("plugins")
 
 -- Ensure Alpha loads on startup
-require("alpha").setup(require("alpha.themes.startify").config)
+require("alpha")

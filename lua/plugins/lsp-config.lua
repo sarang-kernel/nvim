@@ -39,19 +39,6 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							diagnostics = { globals = { "vim" } },
-							workspace = {
-								checkThirdParty = false,
-								library = vim.api.nvim_get_runtime_file("", true),
-							},
-							telemetry = { enable = false },
-						},
-					},
-				},
 				pyright = {},
 				ts_ls = {},
 				html = {},
@@ -66,6 +53,30 @@ return {
 				taplo = {},
 			}
 
+			-- Setup Lua LS separately with proper root_dir
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+				root_dir = require("lspconfig.util").root_pattern(
+					".git",
+					".luarc.json",
+					".luarc.jsonc",
+					".luacheckrc",
+					"lua"
+				),
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						diagnostics = { globals = { "vim" } },
+						workspace = {
+							checkThirdParty = false,
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+						telemetry = { enable = false },
+					},
+				},
+			})
+
+			-- Setup other servers
 			for server, config in pairs(servers) do
 				config.capabilities = capabilities
 				lspconfig[server].setup(config)

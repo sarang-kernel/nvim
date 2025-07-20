@@ -1,13 +1,44 @@
--- lua/plugins/debugging.lua
 return {
-	"mfussenegger/nvim-dap",
-	config = function()
-		local dap = require("dap")
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+		},
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+			"leoluz/nvim-dap-go",
+		},
+		config = function()
+			local dap = require("dap")
+			local dapui = require("dapui")
 
-		-- your dap configuration goes here if any
-		-- e.g. dap.adapters / dap.configurations
+			require("dapui").setup()
+			require("dap-go").setup()
 
-		-- import your keymaps from vim-options.lua
-		require("vim-options").setup_dap_keymaps()
-	end,
+			dapui.setup()
+
+			dap.listeners.before.attach.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				dapui.close()
+			end
+
+			-- Optional: import keymaps for DAP
+			local ok, opts = pcall(require, "vim-options")
+			if ok and opts.setup_dap_keymaps then
+				opts.setup_dap_keymaps()
+			end
+		end,
+	},
 }

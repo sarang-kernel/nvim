@@ -126,6 +126,24 @@ function M.setup_dap_keymaps()
 	vim.keymap.set("n", "<Leader>du", dap.step_out, { desc = "DAP: Step Out" })
 end
 
+-- ============= Gitsigns ===============
+
+function M.setup_gitsigns_keymaps(bufnr)
+	local gs = require("gitsigns")
+	local function map(mode, lhs, rhs, desc)
+		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+	end
+
+	map("n", "]c", gs.next_hunk, "Git: Next Hunk")
+	map("n", "[c", gs.prev_hunk, "Git: Prev Hunk")
+	map("n", "<leader>hs", gs.stage_hunk, "Git: Stage Hunk")
+	map("n", "<leader>hr", gs.reset_hunk, "Git: Reset Hunk")
+	map("n", "<leader>hP", gs.preview_hunk, "Git: Preview Hunk")
+	map("n", "<leader>hb", function()
+		gs.blame_line({ full = true })
+	end, "Git: Blame Line")
+end
+
 return M
 
 -- -- ========== Telescope ===========
