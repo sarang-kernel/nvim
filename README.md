@@ -1,5 +1,28 @@
 # Neovim Keybindings & Settings
 
+<!--toc:start-->
+
+- [Neovim Keybindings & Settings](#neovim-keybindings-settings)
+  - [Table of Contents](#table-of-contents)
+  - [General Settings](#general-settings)
+  - [Leader Key](#leader-key)
+  - [Basic Custom Keybindings](#basic-custom-keybindings)
+  - [Window Navigation and Resizing](#window-navigation-and-resizing)
+    - [Moving Between Splits](#moving-between-splits)
+    - [Resizing Splits](#resizing-splits)
+  - [File Explorer (Neo-tree)](#file-explorer-neo-tree)
+  - [Language Server (LSP)](#language-server-lsp)
+  - [Code Formatting](#code-formatting)
+  - [Autocomplete (nvim-cmp)](#autocomplete-nvim-cmp)
+  - [Debugger (nvim-dap)](#debugger-nvim-dap)
+  - [Git Integration (gitsigns)](#git-integration-gitsigns)
+  - [Fuzzy Finder (Telescope)](#fuzzy-finder-telescope)
+  - [Built-in Vim Keybindings](#built-in-vim-keybindings)
+  - [Markdown Rendering](#markdown-rendering)
+    - [Headers: Visual Structure](#headers-visual-structure)
+  - [Tips and Notes](#tips-and-notes)
+  <!--toc:end-->
+
 ---
 
 ## Table of Contents
@@ -195,6 +218,75 @@ These are standard Vim shortcuts — very useful to learn.
 | `n`  | `%`           | Jump to matching bracket or tag    |
 | `n`  | `.`           | Repeat last change                 |
 | `v`  | `>` / `<`     | Indent / un-indent selected text   |
+
+---
+
+## Markdown Rendering
+
+This setup is to make Markdown notes beautiful and information-dense without any external tools. the features are triggered automatically by the syntax you type.
+
+### Headers: Visual Structure
+
+Distinct icons are added to each heading level for a clear visual hierarchy.
+
+| What you type | What you see |
+| :------------ | :----------- |
+| `# Title`     | `󰎤 Title`    |
+| `## Section`  | `󰎧 Section`  |
+| `### Topic`   | `󰎪 Topic`    |
+
+### Links: Your Information Hub
+
+Links are rendered with icons that tell you what they point to.
+
+| Link Type           | What you type        | Example Result                          |
+| :------------------ | :------------------- | :-------------------------------------- |
+| **Living WikiLink** | `[[My Note]]`        | `󱗖 12.3KB \| 󰥔 2h ago` (if file exists) |
+| **Broken WikiLink** | `[[Bad Link]]`       | `󰅖 Missing` (if file doesn't exist)     |
+| **GitHub**          | `[Repo](github.com)` | `󰊤 Repo`                                |
+| **Arxiv Paper**     | `[Paper](arxiv.org)` | `󰎠 Paper`                               |
+| **OWASP**           | `[Info](owasp.org)`  | `󰓮 Info`                                |
+| **Image**           | `![Alt](img.png)`    | `󰥶 Alt`                                 |
+
+> **Note:** The "Living WikiLink" feature requires you to set the correct path to your notes folder in the plugin's configuration.
+
+### Task Lists: The "Kanban" System
+
+Your task lists are now a mini project management tool with different states.
+
+| Status          | What you type          | What you see |
+| :-------------- | :--------------------- | :----------- |
+| **To Do**       | `- [ ]` (with a space) | `󰄱`          |
+| **Done**        | `- [x]`                | `󰱒`          |
+| **In Progress** | `- [-]`                | `󰥔`          |
+| **Blocked**     | `- [b]`                | `󰹆`          |
+| **Delegated**   | `- [d]`                | `󰆴`          |
+| **Question**    | `- [?]`                | `󰘥`          |
+| **Idea**        | `- [i]`                | `󰌶`          |
+
+### Ordered Lists: Context-Aware Markers
+
+Ordered lists change their markers based on content or level.
+
+| What you type                 | Example Result                            |
+| :---------------------------- | :---------------------------------------- |
+| `1. First item`               | `I. First item` (uses Roman numerals)     |
+| `2. Review notes DUE: Friday` | `󰥔 Review notes DUE: Friday` (clock icon) |
+| `3. Task is DONE`             | `󰱒 Task is DONE` (checkmark icon)         |
+
+### Callouts: Semantic Highlighting
+
+Use special keywords in blockquotes to create beautifully highlighted admonition boxes for different contexts.
+
+| Category          | Keyword          | Example Result                        |
+| :---------------- | :--------------- | :------------------------------------ |
+| **General**       | `> [!NOTE]`      | A blue box with `󰋽 Note`              |
+|                   | `> [!WARNING]`   | An orange box with `󰀪 Warning`        |
+| **Academic**      | `> [!DEF]`       | A highlighted box with `󰙰 Definition` |
+|                   | `> [!THM]`       | A green box with `󰔷 Theorem`          |
+| **Cybersecurity** | `> [!RECON]`     | A blue box with `󰄛 1. Recon`          |
+|                   | `> [!EXPLOIT]`   | A red box with `󰯐 4. Exploit`         |
+| **Code**          | `> [!VULN-CODE]` | A red                                 |
 
 ---
 
