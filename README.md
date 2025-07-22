@@ -1,6 +1,9 @@
 # Neovim Keybindings & Settings
 
-Before Moving forward there are some pre-requisites that you should look out for : 1. Neovim (obviously) 2. Node (node.js/org) -> required for many packages so just do it
+Before Moving forward there are some pre-requisites that you should look out for :
+
+    1. Neovim (obviously)
+    2. Node (node.js/org) -> required for many packages so just do it
 
 <!--toc:start-->
 
