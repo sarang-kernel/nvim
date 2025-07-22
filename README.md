@@ -290,6 +290,81 @@ Use special keywords in blockquotes to create beautifully highlighted admonition
 
 ---
 
+## Supercharged Markdown Rendering
+
+### Headers: Visual Structure
+
+Distinct icons are added to each heading level for a clear visual hierarchy.
+
+| What you type | What you see |
+| :------------ | :----------- |
+| `# Title`     | `󰎤 Title`    |
+| `## Section`  | `󰎧 Section`  |
+| `### Topic`   | `󰎪 Topic`    |
+
+### Links: Your Information Hub
+
+Links are rendered with icons that tell you what they point to.
+
+| Link Type           | What you type        | Example Result                          |
+| :------------------ | :------------------- | :-------------------------------------- |
+| **Living WikiLink** | `[[My Note]]`        | `󱗖 12.3KB \| 󰥔 2h ago` (if file exists) |
+| **Broken WikiLink** | `[[Bad Link]]`       | `󰅖 Missing` (if file doesn't exist)     |
+| **GitHub**          | `[Repo](github.com)` | `󰊤 Repo`                                |
+| **Arxiv Paper**     | `[Paper](arxiv.org)` | `󰎠 Paper`                               |
+| **OWASP**           | `[Info](owasp.org)`  | `󰓮 Info`                                |
+| **Image**           | `![Alt](img.png)`    | `󰥶 Alt`                                 |
+
+> **Note:** The "Living WikiLink" feature requires you to set the correct path to your notes folder in the plugin's configuration.
+
+### Task Lists: The "Kanban" System
+
+Your task lists are now a mini project management tool with different states.
+
+| Status          | What you type          | What you see |
+| :-------------- | :--------------------- | :----------- |
+| **To Do**       | `- [ ]` (with a space) | `󰄱`          |
+| **Done**        | `- [x]`                | `󰱒`          |
+| **In Progress** | `- [-]`                | `󰥔`          |
+| **Blocked**     | `- [b]`                | `󰹆`          |
+| **Delegated**   | `- [d]`                | `󰆴`          |
+| **Question**    | `- [?]`                | `󰘥`          |
+| **Idea**        | `- [i]`                | `󰌶`          |
+
+### Ordered Lists: Context-Aware Markers
+
+Ordered lists change their markers based on content or level.
+
+| What you type                 | Example Result                            |
+| :---------------------------- | :---------------------------------------- |
+| `1. First item`               | `I. First item` (uses Roman numerals)     |
+| `2. Review notes DUE: Friday` | `󰥔 Review notes DUE: Friday` (clock icon) |
+| `3. Task is DONE`             | `󰱒 Task is DONE` (checkmark icon)         |
+
+### Callouts: Semantic Highlighting
+
+Use special keywords in blockquotes to create beautifully highlighted admonition boxes for different contexts.
+
+| Category          | Keyword          | Example Result                        |
+| :---------------- | :--------------- | :------------------------------------ |
+| **General**       | `> [!NOTE]`      | A blue box with `󰋽 Note`              |
+|                   | `> [!WARNING]`   | An orange box with `󰀪 Warning`        |
+| **Academic**      | `> [!DEF]`       | A highlighted box with `󰙰 Definition` |
+|                   | `> [!THM]`       | A green box with `󰔷 Theorem`          |
+| **Cybersecurity** | `> [!RECON]`     | A blue box with `󰄛 1. Recon`          |
+|                   | `> [!EXPLOIT]`   | A red box with `󰯐 4. Exploit`         |
+| **Code**          | `> [!VULN-CODE]` | A red box with `󰅖 Vulnerable`         |
+
+### Other Visual Enhancements
+
+| Feature             | What you type           | What you see                                         |
+| :------------------ | :---------------------- | :--------------------------------------------------- |
+| **Code Blocks**     | ` ```python ... ``` `   | A block with a "python" label and a `󰆏` copy button. |
+| **Tables**          | Standard Markdown table | A clean table with modern box-drawing borders.       |
+| **Horizontal Rule** | `---` or `***`          | A solid, continuous line: `──────────`               |
+
+---
+
 ## Tips and Notes
 
 - `<leader>` is the Space key in your setup.
