@@ -27,6 +27,7 @@ return {
 					"marksman",
 					"dockerls",
 					"taplo",
+					"texlab", -- ADDED: Ensure texlab is installed by Mason
 				},
 				automatic_installation = true,
 			})
@@ -36,7 +37,13 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			-- Safe fallback if cmp_nvim_lsp is not available
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			local ok_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+			if ok_cmp then
+				capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+			end
 
 			local servers = {
 				pyright = {},
@@ -48,9 +55,9 @@ return {
 				rust_analyzer = {},
 				jsonls = {},
 				yamlls = {},
-				marksman = {},
 				dockerls = {},
 				taplo = {},
+				texlab = {}, -- ADDED: Tell lspconfig to manage texlab
 			}
 
 			-- Setup Lua LS separately with proper root_dir
@@ -82,13 +89,21 @@ return {
 				lspconfig[server].setup(config)
 			end
 
-			-- Inline diagnostics
+			-- Global diagnostics config
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
 				underline = true,
 				update_in_insert = false,
 				severity_sort = true,
+			})
+
+			-- Disable diagnostics in Markdown files
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "markdown",
+				callback = function()
+					vim.diagnostic.enable(false)
+				end,
 			})
 		end,
 	},

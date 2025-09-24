@@ -76,41 +76,8 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 
--- ============= Completions (Autocomplete) ==========
-local M = {}
-
-M.get_cmp_mappings = function()
-	local cmp = require("cmp")
-	local luasnip = require("luasnip")
-
-	return cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end,
-		["<S-Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end,
-	})
-end
-
 -- =========== Debugger =============
+local M = {}
 
 function M.setup_dap_keymaps()
 	local ok, dap = pcall(require, "dap")
@@ -125,6 +92,20 @@ function M.setup_dap_keymaps()
 	vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "DAP: Step Into" })
 	vim.keymap.set("n", "<Leader>du", dap.step_out, { desc = "DAP: Step Out" })
 end
+
+--
+-- ========== nvim-cmp ============
+-- THIS IS THE ONLY NEW SECTION.
+-- Add this function to provide the default keybindings for nvim-cmp.
+--
+function M.get_cmp_mappings()
+	local cmp = require("cmp")
+	return cmp.mapping.preset.insert({})
+end
+
+--
+-- END OF NEW SECTION
+--
 
 -- ============= Gitsigns ===============
 
@@ -160,4 +141,3 @@ return M
 --
 -- -- Find Help with <leader>fh
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
---
