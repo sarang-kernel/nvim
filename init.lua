@@ -15,6 +15,30 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- remote server config
+vim.opt.clipboard = "unnamedplus"
+local function copy(lines, _)
+	local text = table.concat(lines, "\n")
+	local osc52 = require("vim.ui.clipboard.osc52")
+	osc52.copy(text)
+end
+
+vim.g.clipboard = {
+	name = "osc52",
+	copy = {
+		["+"] = copy,
+		["*"] = copy,
+	},
+	paste = {
+		["+"] = function()
+			return {}
+		end,
+		["*"] = function()
+			return {}
+		end,
+	},
+}
+
 local opts = {}
 
 -- This file has all the settings and keybindings(vim keybinds)
