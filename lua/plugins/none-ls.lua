@@ -35,7 +35,7 @@ return {
 
 			on_attach = function(client, bufnr)
 				-- Autoformat on save
-				if client.supports_method("textDocument/formatting") then
+				if client:supports_method("textDocument/formatting") then
 					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = augroup,

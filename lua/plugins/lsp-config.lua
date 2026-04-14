@@ -27,7 +27,7 @@ return {
 					"marksman",
 					"dockerls",
 					"taplo",
-					"texlab", -- ADDED: Ensure texlab is installed by Mason
+					"texlab",
 				},
 				automatic_installation = true,
 			})
@@ -36,9 +36,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
-
-			-- Safe fallback if cmp_nvim_lsp is not available
+			-- Capabilities (unchanged)
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			local ok_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 			if ok_cmp then
@@ -57,19 +55,19 @@ return {
 				yamlls = {},
 				dockerls = {},
 				taplo = {},
-				texlab = {}, -- ADDED: Tell lspconfig to manage texlab
+				texlab = {},
 			}
 
-			-- Setup Lua LS separately with proper root_dir
-			lspconfig.lua_ls.setup({
+			-- Lua LS (updated API)
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
-				root_dir = require("lspconfig.util").root_pattern(
+				root_dir = vim.fs.root(0, {
 					".git",
 					".luarc.json",
 					".luarc.jsonc",
 					".luacheckrc",
-					"lua"
-				),
+					"lua",
+				}),
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
@@ -82,14 +80,16 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 
-			-- Setup other servers
+			-- Other servers (updated API)
 			for server, config in pairs(servers) do
 				config.capabilities = capabilities
-				lspconfig[server].setup(config)
+				vim.lsp.config(server, config)
+				vim.lsp.enable(server)
 			end
 
-			-- Global diagnostics config
+			-- Diagnostics config (unchanged)
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
@@ -98,11 +98,11 @@ return {
 				severity_sort = true,
 			})
 
-			-- Disable diagnostics in Markdown files
+			-- Disable diagnostics in Markdown (fixed scope)
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "markdown",
 				callback = function()
-					vim.diagnostic.enable(false)
+					vim.diagnostic.enable(false, { bufnr = 0 })
 				end,
 			})
 		end,
