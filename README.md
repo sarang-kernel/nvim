@@ -1,5 +1,20 @@
 # Neovim Keybindings & Settings
 
+## A quick look
+My setup, as it actually runs on my machine.
+
+![Dashboard on startup: find file, new file, recent files, find text, config](docs/img/dashboard.png)
+*The start screen. One key per entry.*
+
+![Neo-tree on the left, a Lua file with highlighting on the right](docs/img/editor.png)
+*`<leader>e` toggles the file tree. The status line shows mode, git branch and filetype.*
+
+![Telescope find-files with a preview pane](docs/img/telescope.png)
+*Telescope (`<leader>ff`) finds files, and `<leader>fg` greps through them.*
+
+![The keybinding tables of this README, rendered inside Neovim](docs/img/markdown.png)
+*Markdown renders right in the editor, so the tables below read like a page instead of pipes.*
+
 Before Moving forward there are some pre-requisites that you should look out for :
 
     1. Neovim (obviously)
