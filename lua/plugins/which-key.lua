@@ -1,3 +1,4 @@
+-- which-key: shows pending keybindings. <leader>? lists the buffer-local keymaps.
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",

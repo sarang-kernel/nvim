@@ -1,3 +1,4 @@
+-- alpha: the start screen (pixel cat header, six buttons: find file, new file, recent files, find text, config, quit).
 return {
 	{
 		"nvim-tree/nvim-web-devicons",

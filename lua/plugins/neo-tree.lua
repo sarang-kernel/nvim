@@ -1,3 +1,4 @@
+-- neo-tree: the file explorer (30 columns wide). Keys: <leader>e toggles it, <leader>+ / <leader>- resize it (vim-options.lua).
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",

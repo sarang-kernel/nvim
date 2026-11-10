@@ -1,3 +1,4 @@
+-- catppuccin: the colour scheme (mocha flavour, transparent background) with integrations for cmp, gitsigns, neo-tree, treesitter, telescope and LSP.
 return {
 	{
 		"catppuccin/nvim",

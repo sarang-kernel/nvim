@@ -1,3 +1,4 @@
+-- gitsigns: git signs in the gutter. NOTE: the hunk keymaps live in vim-options.lua (setup_gitsigns_keymaps) and are NOT attached here (no on_attach).
 return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPre", "BufNewFile" },

@@ -1,3 +1,4 @@
+-- none-ls: formatters and linters as an LSP server (stylua, prettier, shfmt, black; markdownlint, yamllint), format on save, and <leader>gf.
 return {
 	"nvimtools/none-ls.nvim",
 	event = { "BufReadPre", "BufNewFile" }, -- lazy load

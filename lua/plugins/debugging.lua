@@ -1,3 +1,4 @@
+-- debugging: nvim-dap + nvim-dap-ui + nvim-dap-go. The UI opens on launch/attach and closes on exit; keymaps come from vim-options.lua (setup_dap_keymaps).
 return {
 	{
 		"mfussenegger/nvim-dap",

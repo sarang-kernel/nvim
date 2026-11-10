@@ -1,3 +1,4 @@
+-- lsp-config: Mason + mason-lspconfig (14 servers) + nvim-lspconfig, using the Neovim 0.11 vim.lsp.config()/enable() API; diagnostics off in Markdown.
 return {
 	{
 		"mason-org/mason.nvim",

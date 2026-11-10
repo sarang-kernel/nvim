@@ -1,3 +1,4 @@
+-- autopairs: auto-close brackets and quotes (nvim-autopairs, treesitter-aware) and auto-close/rename HTML/XML tags (nvim-ts-autotag).
 return {
 	{
 		"windwp/nvim-autopairs",

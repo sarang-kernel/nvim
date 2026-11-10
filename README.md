@@ -15,6 +15,9 @@ My setup, as it actually runs on my machine.
 ![The keybinding tables of this README, rendered inside Neovim](docs/img/markdown.png)
 *Markdown renders right in the editor, so the tables below read like a page instead of pipes.*
 
+## Documentation
+Keymaps (generated from the Lua files), the plugin list with pinned commits, language servers, Markdown and LaTeX, and a list of known issues: **[https://sarang-kernel.github.io/i3-dotfiles/nvim/](https://sarang-kernel.github.io/i3-dotfiles/nvim/)**.
+
 Before Moving forward there are some pre-requisites that you should look out for :
 
     1. Neovim (obviously)
